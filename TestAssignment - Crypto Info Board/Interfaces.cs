@@ -10,6 +10,7 @@ namespace TestAssignment___Crypto_Info_Board
     interface ICoinAPI
     {
         ObservableCollection<Coin> SearchCoin(string id);
+        CoinInfo GetCoinInfo(string id);
         ObservableCollection<Coin> GetCoins(int limit, int page);
         ObservableCollection<Market> GetMarketsForCoin(string coinId);
 

@@ -12,13 +12,20 @@ namespace TestAssignment___Crypto_Info_Board
     {
         private HttpClient _client = new HttpClient();
         private string baseURL = "http://api.coincap.io/v2";
+        private JsonElement GetDataFromStream(System.IO.Stream stream)
+        {
+            return JsonDocument.Parse(stream).RootElement.GetProperty("data");
+        }
         public ObservableCollection<Coin> SearchCoin(string id)
         {
             var response = _client.GetStreamAsync(baseURL + $"/assets?search={id}").Result;
-            var document = JsonDocument.Parse(response);
-            var coins = document.RootElement.GetProperty("data");
-            var coinsCollection = coins.Deserialize<List<Coin>>();
+            var coinsCollection = GetDataFromStream(response).Deserialize<List<Coin>>();
             return new ObservableCollection<Coin>(coinsCollection);
+        }
+        public CoinInfo GetCoinInfo(string id)
+        {
+            var response = _client.GetStreamAsync(baseURL + $"/assets/{id}").Result;
+            return GetDataFromStream(response).Deserialize<CoinInfo>();
         }
         public ObservableCollection<Coin> GetCoins(int limit, int page)
         {
