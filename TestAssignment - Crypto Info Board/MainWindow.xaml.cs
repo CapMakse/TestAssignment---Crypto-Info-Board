@@ -22,7 +22,8 @@ namespace TestAssignment___Crypto_Info_Board
     {
         public MainWindow()
         {
-            InitializeComponent(); ;
+            
+            InitializeComponent(); 
         }
     }
 }
