@@ -9,10 +9,10 @@ namespace TestAssignment___Crypto_Info_Board
 {
     interface ICoinAPI
     {
-        ObservableCollection<Coin> SearchCoin(string id);
-        CoinInfo GetCoinInfo(string id);
-        ObservableCollection<Coin> GetCoins(int limit, int page);
-        ObservableCollection<Market> GetMarketsForCoin(string coinId);
+        Task<ObservableCollection<Coin>> SearchCoinAsync(string id);
+        Task<CoinInfo> GetCoinInfoAsync(string id);
+        Task<ObservableCollection<Coin>> GetCoinsAsync(int limit, int page);
+        Task<ObservableCollection<Market>> GetMarketsForCoinAsync(string coinId);
 
     }
 

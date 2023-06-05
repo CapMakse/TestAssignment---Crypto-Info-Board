@@ -16,27 +16,37 @@ namespace TestAssignment___Crypto_Info_Board
         {
             return JsonDocument.Parse(stream).RootElement.GetProperty("data");
         }
-        public ObservableCollection<Coin> SearchCoin(string id)
+        public async Task<ObservableCollection<Coin>> SearchCoinAsync(string id)
         {
-            var response = _client.GetStreamAsync(baseURL + $"/assets?search={id}").Result;
-            var coinsCollection = GetDataFromStream(response).Deserialize<List<Coin>>();
+            var response = await _client.GetStreamAsync(baseURL + $"/assets?search={id}");
+            List<Coin> coinsCollection = GetDataFromStream(response).Deserialize<List<Coin>>();
             return new ObservableCollection<Coin>(coinsCollection);
         }
-        public CoinInfo GetCoinInfo(string id)
+        public async Task<CoinInfo> GetCoinInfoAsync(string id)
         {
-            var response = _client.GetStreamAsync(baseURL + $"/assets/{id}").Result;
+            var response = await _client.GetStreamAsync(baseURL + $"/assets/{id}");
             return GetDataFromStream(response).Deserialize<CoinInfo>();
         }
-        public ObservableCollection<Coin> GetCoins(int limit, int page)
+        public async Task<ObservableCollection<Coin>> GetCoinsAsync(int limit, int page)
         {
             
             return null;
         }
-        public ObservableCollection<Market> GetMarketsForCoin(string coinId)
+        public async Task<ObservableCollection<Market>> GetMarketsForCoinAsync(string coinId)
         {
-            var response = _client.GetStreamAsync(baseURL + $"/markets?baseId={coinId}&quoteId=united-states-dollar").Result;
-            return null;
+            var response = await _client.GetStreamAsync(baseURL + $"/markets?baseId={coinId}&quoteId=united-states-dollar");
+            List<Market> marketsCollection = GetDataFromStream(response).Deserialize<List<Market>>();
+            foreach (Market market in marketsCollection)
+            {
+                var marketResponse = await _client.GetAsync(baseURL + $"/exchanges/{market.Id}");
+                if (!marketResponse.IsSuccessStatusCode) continue;
+                response = await marketResponse.Content.ReadAsStreamAsync();
+                var data = GetDataFromStream(response);
+                market.Name = data.GetProperty("name").GetString();
+                market.URL = data.GetProperty("exchangeUrl").GetString();
+            }
+            marketsCollection.RemoveAll(market => market.Name == null);
+            return new ObservableCollection<Market>(marketsCollection);
         }
-
     }
 }
