@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAssignment___Crypto_Info_Board"
+        xmlns:vm="clr-namespace:TestAssignment___Crypto_Info_Board.ViewModel"
+        xmlns:p="clr-namespace:TestAssignment___Crypto_Info_Board.Pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Crypto info board" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:WindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="120"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*" MinWidth="120"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Головна" Margin="5, 5, 5, 0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Text="Пошук"  Margin="5, 5, 5, 0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Frame
+            Grid.Row="1" Margin="5"
+            Content="{Binding CurrentPage}"/>
     </Grid>
 </Window>
