@@ -10,6 +10,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
 {
     class BaseVM : INotifyPropertyChanged
     {
+        protected ICoinAPI _coinAPI;
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

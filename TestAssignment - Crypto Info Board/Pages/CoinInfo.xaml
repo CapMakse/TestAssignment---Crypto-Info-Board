@@ -12,38 +12,66 @@
     <Page.DataContext>
         <vm:CoinInfoViewModel/>
     </Page.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" MinWidth="100"/>
-            <ColumnDefinition Width="auto" MinWidth="100"/>
-            <ColumnDefinition Width="*" MinWidth="100"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <ListBox Grid.Column="1" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Markets}" SelectedItem="{Binding SelectedMarket, Mode=OneWayToSource}" >
+            <ListBox.ItemTemplate >
+                <DataTemplate >
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Назва:" Margin="5"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CoinInfo.Name}" Margin="5"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Символ:" Margin="5"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CoinInfo.Symbol}" Margin="5"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ціна:" Margin="5"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CoinInfo.Price}" Margin="5"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Кількість на ринку:" Margin="5"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CoinInfo.Supply}" Margin="5"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Максимальна кількість:" Margin="5"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CoinInfo.MaxSupply}" Margin="5"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Зміна ціни за добу:" Margin="5"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding CoinInfo.ChangePercent}" Margin="5"/>
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="Обсяг продажів за добу:" Margin="5"/>
-        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding CoinInfo.VolumeUsd24Hr}" Margin="5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
+                        <TextBlock Grid.Column="0" Margin="3" Text="{Binding Path=Name}" />
+                        <TextBlock Grid.Column="1" Margin="3" Text="{Binding Path=Price}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="100"/>
+                <ColumnDefinition Width="auto" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path=CoinId, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="Знайти по Id" Command="{Binding Path=SelectCoinInfo}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Назва:" Margin="5"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CoinInfo.Name}" Margin="5"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Символ:" Margin="5"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CoinInfo.Symbol}" Margin="5"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Ціна:" Margin="5"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CoinInfo.Price}" Margin="5"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Кількість на ринку:" Margin="5"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CoinInfo.Supply}" Margin="5"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Максимальна кількість:" Margin="5"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding CoinInfo.MaxSupply}" Margin="5"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Зміна ціни за добу:" Margin="5"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding CoinInfo.ChangePercent}" Margin="5"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Обсяг продажів за добу:" Margin="5"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding CoinInfo.VolumeUsd24Hr}" Margin="5"/>
+            
+            <Button Command="{Binding OpenBrowser}" CommandParameter="{Binding SelectedMarket.URL}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Перейти на сайт обраного ринку" Margin="5"/>
+
+        </Grid>
     </Grid>
 </Page>

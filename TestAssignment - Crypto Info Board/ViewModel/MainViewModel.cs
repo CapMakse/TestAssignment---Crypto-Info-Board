@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace TestAssignment___Crypto_Info_Board.ViewModel
 {
     class MainViewModel : BaseVM
     {
-        ICoinAPI _coinAPI;
         public ObservableCollection<Coin> PopularCoins { get; set; }
 
          public MainViewModel()
@@ -20,5 +20,6 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
             PopularCoins = _coinAPI.GetCoinsAsync().Result;
 
         }
+
     }
 }

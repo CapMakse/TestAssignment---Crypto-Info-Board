@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace TestAssignment___Crypto_Info_Board
 {
-    class Market
+    class Market : INotifyPropertyChanged
     {
         private string _id;
         private string _name;

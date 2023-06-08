@@ -10,7 +10,6 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
 {
     class WindowViewModel : BaseVM
     {
-        private ICoinAPI _coinAPI;
         private Page _currentPage;
         public WindowViewModel()
         {
@@ -28,15 +27,15 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         }
         public ICommand SelectMain
         {
-            get { return new RelayCommand(obj => { CurrentPage = new Pages.Main(); }); }
+            get { return new RelayCommand(param => { CurrentPage = new Pages.Main(); }); }
         }
         public ICommand SelectCoinInfo
         {
-            get { return new RelayCommand(obj => { CurrentPage = new Pages.CoinInfo(); }); }
+            get { return new RelayCommand(param => { CurrentPage = new Pages.CoinInfo(); }); }
         }
         public ICommand SelectSearch
         {
-            get { return new RelayCommand(obj => { CurrentPage = new Pages.Search(); }); }
+            get { return new RelayCommand(param => { CurrentPage = new Pages.Search(); }); }
         }
     }
 }

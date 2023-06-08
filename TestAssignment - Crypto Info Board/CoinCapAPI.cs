@@ -18,25 +18,34 @@ namespace TestAssignment___Crypto_Info_Board
         }
         public async Task<ObservableCollection<Coin>> SearchCoinAsync(string id)
         {
-            var response = await _client.GetStreamAsync(_baseURL + $"/assets?search={id}").ConfigureAwait(false);
+            if (id == "") return null;
+            var coinsResponse = await _client.GetAsync(_baseURL + $"/assets?limit=10&search={id}").ConfigureAwait(false);
+            if (!coinsResponse.IsSuccessStatusCode) return null;
+            var response = await coinsResponse.Content.ReadAsStreamAsync();
             List<Coin> coinsCollection = GetDataFromStream(response).Deserialize<List<Coin>>();
             return new ObservableCollection<Coin>(coinsCollection);
         }
         public async Task<CoinInfo> GetCoinInfoAsync(string id)
         {
-            var response = await _client.GetStreamAsync(_baseURL + $"/assets/{id}").ConfigureAwait(false);
+            if (id == "") return null;
+            var coinInfoResponse = await _client.GetAsync(_baseURL + $"/assets/{id}").ConfigureAwait(false);
+            if (!coinInfoResponse.IsSuccessStatusCode) return null;
+            var response = await coinInfoResponse.Content.ReadAsStreamAsync();
             return GetDataFromStream(response).Deserialize<CoinInfo>();
         }
         public async Task<ObservableCollection<Coin>> GetCoinsAsync(int limit = 10, int page = 0 )
         {
-            var response = await _client.GetStreamAsync(_baseURL + $"/assets?limit={limit}&offset={page*limit}").ConfigureAwait(false);
+            var coinsResponse = await _client.GetAsync(_baseURL + $"/assets?limit={limit}&offset={page*limit}").ConfigureAwait(false);
+            if (!coinsResponse.IsSuccessStatusCode) return null;
+            var response = await coinsResponse.Content.ReadAsStreamAsync();
             List<Coin> coinsCollection = GetDataFromStream(response).Deserialize<List<Coin>>();
             return new ObservableCollection<Coin>(coinsCollection);
         }
         public async Task<ObservableCollection<Market>> GetMarketsForCoinAsync(string coinId)
         {
+            if (coinId == "") return null;
             var response = await _client.GetStreamAsync(_baseURL + $"/markets?baseId={coinId}&quoteId=united-states-dollar").ConfigureAwait(false);
-            List<Market> marketsCollection = GetDataFromStream(response).Deserialize<List<Market>>();
+                List<Market> marketsCollection = GetDataFromStream(response).Deserialize<List<Market>>();
             foreach (Market market in marketsCollection)
             {
                 var marketResponse = await _client.GetAsync(_baseURL + $"/exchanges/{market.Id}").ConfigureAwait(false);
