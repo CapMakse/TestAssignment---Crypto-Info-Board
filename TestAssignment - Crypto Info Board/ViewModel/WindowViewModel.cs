@@ -14,7 +14,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         private Page _currentPage;
         public WindowViewModel()
         {
-            _coinAPI = new CoinCapAPI();
+            _coinAPI = CoinAPIStorage.GetCoinCapAPIInstance();
             _currentPage = new Pages.Main();
         }
         public Page CurrentPage

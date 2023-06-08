@@ -10,6 +10,14 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
 {
     class MainViewModel : BaseVM
     {
-        ObservableCollection<Coin> _popularCoins;
+        ICoinAPI _coinAPI;
+        public ObservableCollection<Coin> PopularCoins { get; set; }
+
+         public MainViewModel()
+        {
+
+            _coinAPI = CoinAPIStorage.GetInstance();
+
+        }
     }
 }
