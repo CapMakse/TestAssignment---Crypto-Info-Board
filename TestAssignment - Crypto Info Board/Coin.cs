@@ -50,7 +50,7 @@ namespace TestAssignment___Crypto_Info_Board
             get { return _changePercent;   }
             set
             {
-                _changePercent = value == null ? "0" : value.Substring(0, value.IndexOf('.') + 4);
+                _changePercent = value == null ? "0" : value.Substring(0, value.IndexOf('.') + 4) + " %";
                 OnPropertyChanged("ChangePercent");
             }
         }

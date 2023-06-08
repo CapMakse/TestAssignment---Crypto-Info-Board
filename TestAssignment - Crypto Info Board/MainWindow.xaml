@@ -22,10 +22,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="120"/>
                 <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*" MinWidth="120"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Головна" Margin="5, 5, 5, 0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <TextBlock Text="Пошук"  Margin="5, 5, 5, 0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Button Command="{Binding SelectCoinInfo}" Content="Головна" Margin="5, 5, 5, 0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Text="Пошук"  Margin="5, 5, 5, 0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <TextBox  Margin="5, 5, 5, 0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
         <Frame
             Grid.Row="1" Margin="5"

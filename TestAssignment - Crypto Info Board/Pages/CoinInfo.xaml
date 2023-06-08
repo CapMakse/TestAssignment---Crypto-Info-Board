@@ -4,11 +4,46 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TestAssignment___Crypto_Info_Board.Pages"
+      xmlns:vm="clr-namespace:TestAssignment___Crypto_Info_Board.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CoinInfo">
 
+    <Page.DataContext>
+        <vm:CoinInfoViewModel>
+    </Page.DataContext>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" MinWidth="100"/>
+            <ColumnDefinition Width="auto" MinWidth="100"/>
+            <ColumnDefinition Width="*" MinWidth="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Назва:" Margin="5"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CoinInfo.Name}" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Символ:" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CoinInfo.Symbol}" Margin="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ціна:" Margin="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CoinInfo.Price}" Margin="5"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Кількість на ринку:" Margin="5"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CoinInfo.Supply}" Margin="5"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Максимальна кількість:" Margin="5"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CoinInfo.MaxSupply}" Margin="5"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Зміна ціни за добу:" Margin="5"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding CoinInfo.ChangePercent}" Margin="5"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Обсяг продажів за добу:" Margin="5"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding CoinInfo.VolumeUsd24Hr}" Margin="5"/>
+
     </Grid>
 </Page>

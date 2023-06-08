@@ -26,5 +26,17 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
                 OnPropertyChanged("CurrentPage");
             }
         }
+        public ICommand SelectMain
+        {
+            get { return new RelayCommand(obj => { CurrentPage = new Pages.Main(); }); }
+        }
+        public ICommand SelectCoinInfo
+        {
+            get { return new RelayCommand(obj => { CurrentPage = new Pages.CoinInfo(); }); }
+        }
+        public ICommand SelectSearch
+        {
+            get { return new RelayCommand(obj => { CurrentPage = new Pages.Search(); }); }
+        }
     }
 }

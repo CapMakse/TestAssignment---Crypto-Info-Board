@@ -14,14 +14,23 @@
     </Page.DataContext>
 
     <Grid>
-        <ListBox ItemsSource="{Binding PopularCoins}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding Path=Name}" />
-                        <TextBlock Text="{Binding Path=Price}" />
-                        <TextBlock Text="{Binding Path=ChangePercent}" />
-                    </StackPanel>
+        <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding PopularCoins}">
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition  Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="3" Text="{Binding Path=Name}" />
+                        <TextBlock Grid.Column="1" Margin="3" Text="{Binding Path=Price}" />
+                        <TextBlock Grid.Column="2" Margin="3" Text="{Binding Path=ChangePercent}"  />
+                        <Button Grid.Column="4" Content="Детальніше" Width="100"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

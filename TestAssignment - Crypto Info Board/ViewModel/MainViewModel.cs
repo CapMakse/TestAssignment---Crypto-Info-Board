@@ -17,6 +17,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         {
 
             _coinAPI = CoinAPIStorage.GetInstance();
+            PopularCoins = _coinAPI.GetCoinsAsync().Result;
 
         }
     }
