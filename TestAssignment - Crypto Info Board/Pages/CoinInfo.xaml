@@ -53,8 +53,8 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path=CoinId, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Row="0" Grid.Column="1" Content="Знайти по Id" Command="{Binding Path=SelectCoinInfo}"/>
+            <TextBox Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding Path=CoinId, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="Знайти по Id" Command="{Binding Path=SelectCoinInfo}"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Назва:" Margin="5"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CoinInfo.Name}" Margin="5"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Символ:" Margin="5"/>

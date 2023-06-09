@@ -106,6 +106,7 @@
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\CoinInfoViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

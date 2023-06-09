@@ -20,7 +20,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
 
             _coinAPI = CoinAPIStorage.GetInstance();
             CoinInfo = _coinAPI.GetCoinInfoAsync(_coinId).Result;
-            Markets = _coinAPI.GetMarketsForCoinAsync(_coinId).Result;
+            Markets = new ObservableCollection<Market>();
 
         }
         public CoinInfo CoinInfo
@@ -54,7 +54,12 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         {
             get { return new RelayCommand(param => {
                 CoinInfo = _coinAPI.GetCoinInfoAsync(_coinId).Result;
-                Markets = _coinAPI.GetMarketsForCoinAsync(_coinId).Result;
+                Markets.Clear();
+                var newMarkets = _coinAPI.GetMarketsForCoinAsync(_coinId).Result;
+                foreach (var market in newMarkets)
+                {
+                    Markets.Add(market);
+                }
             }); }
         }
         

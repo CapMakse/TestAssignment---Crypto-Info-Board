@@ -4,11 +4,51 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TestAssignment___Crypto_Info_Board.Pages"
+      xmlns:vm="clr-namespace:TestAssignment___Crypto_Info_Board.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Search">
 
+
+    <Page.DataContext>
+        <vm:SearchViewModel/>
+    </Page.DataContext>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding Path=CoinId, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button MinWidth="100" Grid.Row="0" Grid.Column="1" Margin="5" Content="Знайти" Command="{Binding Path=SearchCoin }"/>
+        <ListBox Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Coins}">
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="3" Text="{Binding Path=Name}" />
+                        <TextBlock Grid.Column="1" Margin="3" Text="{Binding Path=Price}" />
+                        <TextBlock Grid.Column="2" Margin="3" Text="{Binding Path=ChangePercent}"  />
+                        <TextBlock Grid.Column="3" Margin="3" Text="Id:"  />
+                        <TextBlock Grid.Column="4" Margin="3" Text="{Binding Path=Id}"  />
+                        <Button Grid.Column="6" Content="Детальніше" Width="100">
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

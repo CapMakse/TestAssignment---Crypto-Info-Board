@@ -13,7 +13,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
     {
         public ObservableCollection<Coin> PopularCoins { get; set; }
 
-         public MainViewModel()
+        public MainViewModel()
         {
 
             _coinAPI = CoinAPIStorage.GetInstance();
