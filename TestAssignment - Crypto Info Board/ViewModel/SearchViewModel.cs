@@ -16,7 +16,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         public SearchViewModel()
         {
             _coinAPI = CoinAPIStorage.GetInstance();
-            Coins = _coinAPI.GetCoinsAsync().Result;
+            Coins = new ObservableCollection<Coin>();
         }
         public string CoinId
         {

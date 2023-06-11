@@ -50,7 +50,7 @@ namespace TestAssignment___Crypto_Info_Board
             get { return _volumeUsd24Hr; }
             set
             {
-                _volumeUsd24Hr = value == null ? "0" : value.Substring(0, value.IndexOf('.') + 3) + " USD";
+                _volumeUsd24Hr = value == null ? "0" : Math.Round(Double.Parse(value.Replace('.', ',')), 2).ToString();
                 OnPropertyChanged("VolumeUsd24Hr");
             }
         }

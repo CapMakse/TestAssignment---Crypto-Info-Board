@@ -40,7 +40,7 @@ namespace TestAssignment___Crypto_Info_Board
             get { return _priceUSD; }
             set
             {
-                _priceUSD = value.Substring(0, value.IndexOf('.') + 3) + " USD";
+                _priceUSD = Math.Round(Double.Parse(value.Replace('.', ',')), 4).ToString();
                 OnPropertyChanged("Price");
             }
         }

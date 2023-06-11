@@ -40,7 +40,7 @@ namespace TestAssignment___Crypto_Info_Board
             get { return _priceUSD; }
             set
             {
-                _priceUSD = value.Substring(0, value.IndexOf('.') + 3) + " USD";
+                _priceUSD = Math.Round(Double.Parse(value.Replace('.', ',')), 4).ToString();
                 OnPropertyChanged("Price");
             }
         }
@@ -50,8 +50,14 @@ namespace TestAssignment___Crypto_Info_Board
             get { return _changePercent;   }
             set
             {
-                _changePercent = value == null ? "0" : value.Substring(0, value.IndexOf('.') + 4) + " %";
-                if (_changePercent[0] != '-') _changePercent = "+" + _changePercent;
+                if (value == null) 
+                {
+                    _changePercent = "0%";
+                } else
+                {
+                    _changePercent = Math.Round(Double.Parse(value.Replace('.', ',')), 3).ToString();
+                    if (_changePercent[0] != '-') _changePercent = "+" + _changePercent;
+                }
                 OnPropertyChanged("ChangePercent");
             }
         }

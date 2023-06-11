@@ -37,5 +37,9 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         {
             get { return new RelayCommand(param => { CurrentPage = new Pages.Search(); }); }
         }
+        public ICommand SelectConverter
+        {
+            get { return new RelayCommand(param => { CurrentPage = new Pages.CoinConverter(); }); }
+        }
     }
 }

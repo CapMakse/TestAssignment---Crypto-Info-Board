@@ -14,12 +14,11 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         CoinInfo _coinInfo;
         string _coinId = "bitcoin";
         public ObservableCollection<Market> Markets { get; set; }
-        public Market _selectedMarket;
+        private Market _selectedMarket;
         public CoinInfoViewModel()
         {
 
             _coinAPI = CoinAPIStorage.GetInstance();
-            CoinInfo = new CoinInfo();
             Markets = new ObservableCollection<Market>();
 
         }
