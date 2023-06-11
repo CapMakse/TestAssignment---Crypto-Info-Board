@@ -52,7 +52,7 @@ namespace TestAssignment___Crypto_Info_Board
             {
                 if (value == null) 
                 {
-                    _changePercent = "0%";
+                    _changePercent = "0";
                 } else
                 {
                     _changePercent = Math.Round(Double.Parse(value.Replace('.', ',')), 3).ToString();
