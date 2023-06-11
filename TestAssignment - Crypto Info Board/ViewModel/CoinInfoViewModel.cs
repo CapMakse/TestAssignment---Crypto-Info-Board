@@ -19,7 +19,7 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
         {
 
             _coinAPI = CoinAPIStorage.GetInstance();
-            CoinInfo = _coinAPI.GetCoinInfoAsync(_coinId).Result;
+            CoinInfo = new CoinInfo();
             Markets = new ObservableCollection<Market>();
 
         }
@@ -47,20 +47,20 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
             set
             {
                 _coinId = value;
+                UpdateCoinInfo(_coinAPI.GetCoinInfoAsync(_coinId).Result);
                 OnPropertyChanged("CoinId");
             }
         }
-        public ICommand SelectCoinInfo
+        private void UpdateCoinInfo(CoinInfo newCoinInfo)
         {
-            get { return new RelayCommand(param => {
-                CoinInfo = _coinAPI.GetCoinInfoAsync(_coinId).Result;
-                Markets.Clear();
-                var newMarkets = _coinAPI.GetMarketsForCoinAsync(_coinId).Result;
-                foreach (var market in newMarkets)
-                {
-                    Markets.Add(market);
-                }
-            }); }
+            if (newCoinInfo == null) return;
+            CoinInfo = newCoinInfo;
+            Markets.Clear();
+            var newMarkets = _coinAPI.GetMarketsForCoinAsync(_coinId).Result;
+            foreach (var market in newMarkets)
+            {
+                Markets.Add(market);
+            }
         }
         
         public ICommand OpenBrowser

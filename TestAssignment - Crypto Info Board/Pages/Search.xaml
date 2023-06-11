@@ -24,7 +24,6 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBox Grid.Row="0" Grid.Column="0" Margin="5" Text="{Binding Path=CoinId, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button MinWidth="100" Grid.Row="0" Grid.Column="1" Margin="5" Content="Знайти" Command="{Binding Path=SearchCoin }"/>
         <ListBox Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Coins}">
             <ListBox.ItemTemplate >
                 <DataTemplate >

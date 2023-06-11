@@ -23,23 +23,19 @@ namespace TestAssignment___Crypto_Info_Board.ViewModel
             get { return _coinId; }
             set
             {
-                _coinId = value;
+                _coinId = value; 
+                UpdateSearchResult(_coinAPI.SearchCoinAsync(_coinId).Result);
                 OnPropertyChanged("CoinId");
             }
         }
-        public ICommand SearchCoin
+        private void UpdateSearchResult(ObservableCollection<Coin> coins)
         {
-            get
-            {
-                return new RelayCommand(param => {
-                    Coins.Clear();
-                    var newCoins = _coinAPI.SearchCoinAsync(_coinId).Result;
-                    foreach (var coin in newCoins)
-                    {
-                        Coins.Add(coin);
-                    }
-                });
-            }
+            Coins.Clear();
+            if (coins != null) 
+                foreach (var coin in coins)
+                {
+                    Coins.Add(coin);
+                }
         }
     }
 }
